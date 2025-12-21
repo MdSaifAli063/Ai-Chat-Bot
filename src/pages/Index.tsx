@@ -1,13 +1,19 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import React from 'react';
+import { Helmet } from 'react-helmet';
+import { ChatApp } from '@/components/ChatApp';
 
-const Index = () => {
+const Index: React.FC = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <>
+      <Helmet>
+        <title>AI Chat - Intelligent Conversations</title>
+        <meta 
+          name="description" 
+          content="Experience intelligent AI-powered conversations with our advanced chatbot. Get help with coding, creative ideas, and more." 
+        />
+      </Helmet>
+      <ChatApp />
+    </>
   );
 };
 
