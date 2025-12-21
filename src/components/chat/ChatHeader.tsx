@@ -1,7 +1,8 @@
 import React from 'react';
-import { Menu, Sparkles } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Conversation } from '@/types/chat';
+import { Logo } from '@/components/Logo';
 
 interface ChatHeaderProps {
   conversation: Conversation | undefined;
@@ -24,9 +25,9 @@ export const ChatHeader: React.FC<ChatHeaderProps> = ({
         <Menu className="w-5 h-5" />
       </Button>
 
-      <div className="flex-1 flex items-center gap-2 min-w-0">
-        <div className="w-7 h-7 rounded-md bg-primary/10 flex items-center justify-center">
-          <Sparkles className="w-4 h-4 text-primary" />
+      <div className="flex-1 flex items-center gap-3 min-w-0">
+        <div className="hidden md:flex w-8 h-8 rounded-lg bg-primary/10 items-center justify-center">
+          <Logo size="sm" className="w-5 h-5" />
         </div>
         
         <div className="min-w-0">
