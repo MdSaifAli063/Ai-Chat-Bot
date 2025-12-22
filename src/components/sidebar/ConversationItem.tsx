@@ -1,5 +1,5 @@
 import React from 'react';
-import { MessageSquare, Trash2 } from 'lucide-react';
+import { MessageSquare, Trash2, MoreHorizontal } from 'lucide-react';
 import { Conversation } from '@/types/chat';
 import { formatTimestamp } from '@/utils/helpers';
 import { Button } from '@/components/ui/button';
@@ -30,28 +30,36 @@ export const ConversationItem: React.FC<ConversationItemProps> = ({
       onClick={onClick}
       onKeyDown={(e) => e.key === 'Enter' && onClick()}
       className={cn(
-        "group flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-pointer",
+        "group flex items-center gap-3 px-3 py-3 rounded-xl cursor-pointer",
         "transition-all duration-200",
         isActive 
-          ? "bg-primary/10 text-foreground" 
-          : "hover:bg-secondary text-muted-foreground hover:text-foreground"
+          ? "bg-gradient-to-r from-primary/15 to-primary/5 text-foreground border border-primary/20 shadow-sm" 
+          : "hover:bg-sidebar-accent text-muted-foreground hover:text-foreground border border-transparent"
       )}
       aria-selected={isActive}
       aria-label={`Conversation: ${conversation.title}`}
     >
-      <MessageSquare 
-        className={cn(
-          "w-4 h-4 flex-shrink-0",
-          isActive ? "text-primary" : "text-muted-foreground"
-        )} 
-        aria-hidden="true"
-      />
+      <div className={cn(
+        "w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-colors",
+        isActive ? "bg-primary/20" : "bg-sidebar-accent group-hover:bg-primary/10"
+      )}>
+        <MessageSquare 
+          className={cn(
+            "w-4 h-4",
+            isActive ? "text-primary" : "text-muted-foreground group-hover:text-primary"
+          )} 
+          aria-hidden="true"
+        />
+      </div>
 
       <div className="flex-1 min-w-0">
-        <p className="text-sm font-medium truncate">
+        <p className={cn(
+          "text-sm font-medium truncate",
+          isActive && "text-foreground"
+        )}>
           {conversation.title}
         </p>
-        <p className="text-xs text-muted-foreground">
+        <p className="text-[10px] text-muted-foreground">
           {formatTimestamp(conversation.updatedAt)}
         </p>
       </div>
@@ -61,13 +69,13 @@ export const ConversationItem: React.FC<ConversationItemProps> = ({
         size="sm"
         onClick={handleDelete}
         className={cn(
-          "h-7 w-7 p-0 opacity-0 group-hover:opacity-100",
-          "transition-opacity duration-200",
+          "h-7 w-7 p-0 opacity-0 group-hover:opacity-100 shrink-0",
+          "transition-all duration-200 rounded-lg",
           "hover:bg-destructive/10 hover:text-destructive"
         )}
         aria-label="Delete conversation"
       >
-        <Trash2 className="w-4 h-4" />
+        <Trash2 className="w-3.5 h-3.5" />
       </Button>
     </div>
   );

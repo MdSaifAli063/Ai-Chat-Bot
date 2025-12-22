@@ -1,5 +1,5 @@
 import React from 'react';
-import { Plus, Trash2, Moon, Sun, X, LogOut } from 'lucide-react';
+import { Plus, Trash2, Moon, Sun, X, LogOut, Sparkles } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Conversation } from '@/types/chat';
 import { ConversationItem } from './ConversationItem';
@@ -64,14 +64,14 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
         aria-label="Chat history"
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-4">
+        <div className="flex items-center justify-between p-4 border-b border-sidebar-border">
           <Logo size="sm" />
           
           <Button
             variant="ghost"
             size="sm"
             onClick={onClose}
-            className="md:hidden h-8 w-8 p-0"
+            className="md:hidden h-8 w-8 p-0 hover:bg-sidebar-accent"
             aria-label="Close sidebar"
           >
             <X className="w-4 h-4" />
@@ -79,13 +79,13 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
         </div>
 
         {/* New chat button */}
-        <div className="px-3 pb-3">
+        <div className="p-4">
           <Button
             onClick={() => {
               onNewConversation();
               onClose();
             }}
-            className="w-full gap-2 rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground"
+            className="w-full gap-2 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground shadow-md hover:shadow-lg transition-all duration-200"
             variant="default"
           >
             <Plus className="w-4 h-4" />
@@ -93,85 +93,95 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
           </Button>
         </div>
 
-        <Separator className="bg-sidebar-border" />
-
         {/* Conversation list */}
-        <div className="flex-1 overflow-y-auto scrollbar-thin p-3 space-y-1">
+        <div className="flex-1 overflow-y-auto scrollbar-thin px-3 pb-3 space-y-1">
           {conversations.length === 0 ? (
-            <div className="text-center py-8">
-              <div className="w-12 h-12 rounded-full bg-accent mx-auto flex items-center justify-center mb-3">
-                <Logo size="sm" className="w-6 h-6" />
+            <div className="text-center py-12 px-4">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-accent mx-auto flex items-center justify-center mb-4">
+                <Sparkles className="w-8 h-8 text-primary" />
               </div>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm font-medium text-foreground mb-1">
                 No conversations yet
               </p>
-              <p className="text-xs text-muted-foreground mt-1">
-                Start a new chat to begin
+              <p className="text-xs text-muted-foreground">
+                Start a new chat to begin exploring
               </p>
             </div>
           ) : (
-            conversations.map((conversation) => (
-              <ConversationItem
-                key={conversation.id}
-                conversation={conversation}
-                isActive={conversation.id === activeConversationId}
-                onClick={() => {
-                  onSelectConversation(conversation.id);
-                  onClose();
-                }}
-                onDelete={() => onDeleteConversation(conversation.id)}
-              />
-            ))
+            <>
+              <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider px-2 pt-2 pb-3">
+                Recent Chats
+              </p>
+              {conversations.map((conversation) => (
+                <ConversationItem
+                  key={conversation.id}
+                  conversation={conversation}
+                  isActive={conversation.id === activeConversationId}
+                  onClick={() => {
+                    onSelectConversation(conversation.id);
+                    onClose();
+                  }}
+                  onDelete={() => onDeleteConversation(conversation.id)}
+                />
+              ))}
+            </>
           )}
         </div>
 
         {/* Footer actions */}
-        <div className="p-3 border-t border-sidebar-border space-y-2">
+        <div className="p-4 border-t border-sidebar-border space-y-3 bg-sidebar/50 backdrop-blur-sm">
           {/* User info */}
           {user && (
-            <div className="px-2 py-2 mb-1">
-              <p className="text-xs text-muted-foreground truncate">
+            <div className="px-3 py-2 rounded-lg bg-sidebar-accent/50">
+              <p className="text-xs font-medium text-foreground truncate">
+                {user.email?.split('@')[0]}
+              </p>
+              <p className="text-[10px] text-muted-foreground truncate">
                 {user.email}
               </p>
             </div>
           )}
 
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={onToggleTheme}
-            className="w-full justify-start gap-2 text-muted-foreground hover:text-foreground"
-          >
-            {theme === 'dark' ? (
-              <>
-                <Sun className="w-4 h-4" />
-                Light Mode
-              </>
-            ) : (
-              <>
-                <Moon className="w-4 h-4" />
-                Dark Mode
-              </>
-            )}
-          </Button>
-
-          {conversations.length > 0 && (
+          <div className="grid grid-cols-2 gap-2">
             <Button
               variant="ghost"
               size="sm"
-              onClick={onClearAll}
-              className="w-full justify-start gap-2 text-muted-foreground hover:text-destructive"
+              onClick={onToggleTheme}
+              className="justify-start gap-2 text-muted-foreground hover:text-foreground hover:bg-sidebar-accent rounded-lg"
             >
-              <Trash2 className="w-4 h-4" />
-              Clear All Chats
+              {theme === 'dark' ? (
+                <>
+                  <Sun className="w-4 h-4" />
+                  <span className="text-xs">Light</span>
+                </>
+              ) : (
+                <>
+                  <Moon className="w-4 h-4" />
+                  <span className="text-xs">Dark</span>
+                </>
+              )}
             </Button>
-          )}
+
+            {conversations.length > 0 && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={onClearAll}
+                className="justify-start gap-2 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-lg"
+              >
+                <Trash2 className="w-4 h-4" />
+                <span className="text-xs">Clear</span>
+              </Button>
+            )}
+          </div>
+
+          <Separator className="bg-sidebar-border" />
 
           <Button
             variant="ghost"
             size="sm"
             onClick={handleSignOut}
-            className="w-full justify-start gap-2 text-muted-foreground hover:text-destructive"
+            className="w-full justify-start gap-2 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-lg"
           >
             <LogOut className="w-4 h-4" />
             Sign Out
