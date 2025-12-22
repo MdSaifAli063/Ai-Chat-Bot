@@ -30,11 +30,14 @@ const Chat: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Chat - NovaAI</title>
+        <title>Chat - Synapse AI</title>
         <meta
           name="description"
-          content="Chat with NovaAI - Your intelligent AI assistant for coding, creativity, and more."
+          content="Chat with Synapse - Your intelligent AI assistant for coding, creativity, and more."
         />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </Helmet>
       <ChatApp />
     </>
