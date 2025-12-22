@@ -2,7 +2,8 @@ import React, { useRef, useEffect } from 'react';
 import { Message } from '@/types/chat';
 import { MessageBubble } from './MessageBubble';
 import { TypingIndicator } from './TypingIndicator';
-import { MessageSquare } from 'lucide-react';
+import { Sparkles, Code, Lightbulb, Zap } from 'lucide-react';
+import { Logo } from '@/components/Logo';
 
 interface ChatMessagesProps {
   messages: Message[];
@@ -20,33 +21,49 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({ messages, isLoading 
   // Empty state
   if (messages.length === 0 && !isLoading) {
     return (
-      <div className="flex-1 flex flex-col items-center justify-center p-8">
-        <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
-          <MessageSquare className="w-8 h-8 text-primary" />
+      <div className="flex-1 flex flex-col items-center justify-center p-8 overflow-y-auto">
+        <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-primary/20 to-accent flex items-center justify-center mb-6 shadow-lg shadow-primary/10">
+          <Sparkles className="w-10 h-10 text-primary" />
         </div>
         
-        <h2 className="text-2xl font-semibold text-foreground mb-2">
-          Welcome to AI Chat
+        <h2 className="text-3xl font-bold text-foreground mb-3">
+          Hi, I'm <span className="text-gradient">NovaAI</span>
         </h2>
         
-        <p className="text-muted-foreground text-center max-w-md mb-8">
-          Start a conversation by typing a message below. I'm here to help with questions, 
-          coding, creative ideas, and more!
+        <p className="text-muted-foreground text-center max-w-md mb-10">
+          Your intelligent assistant for coding, creativity, and problem-solving. 
+          How can I help you today?
         </p>
 
-        <div className="grid gap-3 w-full max-w-md">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-2xl px-4">
           {[
-            "Help me write a function in TypeScript",
-            "Explain how React hooks work",
-            "Give me some creative project ideas",
-          ].map((suggestion, index) => (
+            { 
+              icon: Code, 
+              title: "Write Code",
+              desc: "Help me build a React component"
+            },
+            { 
+              icon: Lightbulb, 
+              title: "Explain Concepts",
+              desc: "How do async functions work?"
+            },
+            { 
+              icon: Zap, 
+              title: "Quick Help",
+              desc: "Debug my code or find errors"
+            },
+          ].map((item, index) => (
             <button
               key={index}
-              className="p-4 rounded-xl border border-border bg-secondary/30 text-left
-                         hover:bg-secondary/50 hover:border-primary/30 
-                         transition-all duration-200 text-sm text-foreground"
+              className="p-5 rounded-2xl border border-border bg-card/50 text-left
+                         hover:bg-card hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5
+                         transition-all duration-300 group"
             >
-              {suggestion}
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
+                <item.icon className="w-5 h-5 text-primary" />
+              </div>
+              <p className="font-semibold text-foreground mb-1">{item.title}</p>
+              <p className="text-xs text-muted-foreground">{item.desc}</p>
             </button>
           ))}
         </div>

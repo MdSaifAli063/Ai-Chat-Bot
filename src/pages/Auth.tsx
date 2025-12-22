@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { z } from 'zod';
-import { Eye, EyeOff, Loader2 } from 'lucide-react';
+import { Eye, EyeOff, Loader2, Sparkles, ArrowLeft, Mail, Lock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -81,7 +81,12 @@ const Auth: React.FC = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
-        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center animate-pulse">
+            <Sparkles className="w-6 h-6 text-primary-foreground" />
+          </div>
+          <Loader2 className="w-6 h-6 animate-spin text-primary" />
+        </div>
       </div>
     );
   }
@@ -95,29 +100,61 @@ const Auth: React.FC = () => {
 
       <div className="min-h-screen flex bg-background">
         {/* Left side - Brand */}
-        <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-primary/10 via-background to-accent/20 items-center justify-center p-12">
-          <div className="max-w-md text-center">
-            <Logo size="xl" className="justify-center mb-8" />
-            <h1 className="text-3xl font-bold mb-4">
-              Welcome to the Future of AI Chat
+        <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-primary/5 via-background to-accent/10 items-center justify-center p-12 relative overflow-hidden">
+          {/* Decorative elements */}
+          <div className="absolute top-20 left-20 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 right-20 w-96 h-96 bg-accent/20 rounded-full blur-3xl" />
+          
+          <div className="max-w-lg text-center relative z-10">
+            <Logo size="xl" className="justify-center mb-10" />
+            
+            <h1 className="text-4xl font-bold mb-6 leading-tight">
+              Welcome to the Future of 
+              <span className="text-gradient"> AI Conversations</span>
             </h1>
-            <p className="text-muted-foreground">
-              Experience intelligent conversations, get coding help, brainstorm creative ideas, 
-              and so much more with NovaAI.
+            
+            <p className="text-lg text-muted-foreground mb-8">
+              Experience intelligent conversations, get instant coding help, 
+              brainstorm creative ideas, and unlock your productivity with NovaAI.
             </p>
+
+            <div className="grid grid-cols-3 gap-4 text-center">
+              {[
+                { label: 'Smart', desc: 'Context-aware' },
+                { label: 'Fast', desc: 'Instant responses' },
+                { label: 'Secure', desc: 'Private chats' },
+              ].map((item) => (
+                <div key={item.label} className="p-4 rounded-xl bg-card/50 border border-border/50 backdrop-blur-sm">
+                  <p className="font-semibold text-foreground">{item.label}</p>
+                  <p className="text-xs text-muted-foreground">{item.desc}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
         {/* Right side - Auth Form */}
         <div className="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12">
           <div className="w-full max-w-md">
+            {/* Back button */}
+            <button
+              onClick={() => navigate('/')}
+              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8 group"
+            >
+              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+              Back to home
+            </button>
+
             {/* Mobile logo */}
             <div className="lg:hidden mb-8 text-center">
               <Logo size="lg" className="justify-center" />
             </div>
 
-            <div className="bg-card rounded-2xl border border-border p-8 shadow-lg">
+            <div className="bg-card rounded-2xl border border-border p-8 shadow-xl shadow-primary/5">
               <div className="text-center mb-8">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-accent mx-auto flex items-center justify-center mb-4">
+                  <Sparkles className="w-7 h-7 text-primary" />
+                </div>
                 <h2 className="text-2xl font-bold mb-2">
                   {isSignUp ? 'Create your account' : 'Welcome back'}
                 </h2>
@@ -130,31 +167,35 @@ const Auth: React.FC = () => {
 
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className={errors.email ? 'border-destructive' : ''}
-                    disabled={isSubmitting}
-                  />
+                  <Label htmlFor="email" className="text-sm font-medium">Email</Label>
+                  <div className="relative">
+                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="Enter your email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className={`pl-10 h-12 rounded-xl bg-background border-input ${errors.email ? 'border-destructive focus-visible:ring-destructive' : ''}`}
+                      disabled={isSubmitting}
+                    />
+                  </div>
                   {errors.email && (
-                    <p className="text-sm text-destructive">{errors.email}</p>
+                    <p className="text-xs text-destructive mt-1">{errors.email}</p>
                   )}
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="password">Password</Label>
+                  <Label htmlFor="password" className="text-sm font-medium">Password</Label>
                   <div className="relative">
+                    <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                     <Input
                       id="password"
                       type={showPassword ? 'text' : 'password'}
                       placeholder="Enter your password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      className={errors.password ? 'border-destructive pr-10' : 'pr-10'}
+                      className={`pl-10 pr-10 h-12 rounded-xl bg-background border-input ${errors.password ? 'border-destructive focus-visible:ring-destructive' : ''}`}
                       disabled={isSubmitting}
                     />
                     <button
@@ -170,13 +211,13 @@ const Auth: React.FC = () => {
                     </button>
                   </div>
                   {errors.password && (
-                    <p className="text-sm text-destructive">{errors.password}</p>
+                    <p className="text-xs text-destructive mt-1">{errors.password}</p>
                   )}
                 </div>
 
                 <Button
                   type="submit"
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-5"
+                  className="w-full h-12 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground font-medium shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all duration-200"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (
@@ -195,21 +236,12 @@ const Auth: React.FC = () => {
                   {isSignUp ? 'Already have an account?' : "Don't have an account?"}{' '}
                   <button
                     onClick={toggleMode}
-                    className="text-primary hover:underline font-medium"
+                    className="text-primary hover:text-primary/80 font-semibold transition-colors"
                   >
                     {isSignUp ? 'Sign in' : 'Sign up'}
                   </button>
                 </p>
               </div>
-            </div>
-
-            <div className="mt-6 text-center">
-              <button
-                onClick={() => navigate('/')}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                ← Back to home
-              </button>
             </div>
           </div>
         </div>
