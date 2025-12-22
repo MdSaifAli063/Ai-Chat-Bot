@@ -94,8 +94,11 @@ const Auth: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>{isSignUp ? 'Sign Up' : 'Sign In'} - NovaAI</title>
-        <meta name="description" content="Sign in or create an account to start chatting with NovaAI." />
+        <title>{isSignUp ? 'Sign Up' : 'Sign In'} - Synapse AI</title>
+        <meta name="description" content="Sign in or create an account to start chatting with Synapse AI." />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </Helmet>
 
       <div className="min-h-screen flex bg-background">
@@ -108,14 +111,14 @@ const Auth: React.FC = () => {
           <div className="max-w-lg text-center relative z-10">
             <Logo size="xl" className="justify-center mb-10" />
             
-            <h1 className="text-4xl font-bold mb-6 leading-tight">
+            <h1 className="text-4xl font-display font-bold mb-6 leading-tight">
               Welcome to the Future of 
               <span className="text-gradient"> AI Conversations</span>
             </h1>
             
             <p className="text-lg text-muted-foreground mb-8">
               Experience intelligent conversations, get instant coding help, 
-              brainstorm creative ideas, and unlock your productivity with NovaAI.
+              brainstorm creative ideas, and unlock your productivity with Synapse.
             </p>
 
             <div className="grid grid-cols-3 gap-4 text-center">

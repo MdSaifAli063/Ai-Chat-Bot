@@ -34,7 +34,7 @@ export const ChatHeader: React.FC<ChatHeaderProps> = ({
             {conversation?.title || 'New Conversation'}
           </h1>
           <p className="text-xs text-muted-foreground">
-            {conversation ? `${conversation.messages.length} messages` : 'Start chatting with NovaAI'}
+            {conversation ? `${conversation.messages.length} messages` : 'Start chatting with Synapse'}
           </p>
         </div>
       </div>

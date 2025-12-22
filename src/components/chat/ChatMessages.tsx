@@ -26,8 +26,8 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({ messages, isLoading 
           <Sparkles className="w-10 h-10 text-primary" />
         </div>
         
-        <h2 className="text-3xl font-bold text-foreground mb-3">
-          Hi, I'm <span className="text-gradient">NovaAI</span>
+        <h2 className="text-3xl font-display font-bold text-foreground mb-3">
+          Hi, I'm <span className="text-gradient">Synapse</span>
         </h2>
         
         <p className="text-muted-foreground text-center max-w-md mb-10">
