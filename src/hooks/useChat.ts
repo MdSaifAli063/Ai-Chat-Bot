@@ -107,34 +107,57 @@ export const useChat = () => {
       const currentConv = state.conversations.find(c => c.id === conversationId);
       const allMessages = currentConv ? [...currentConv.messages, userMessage] : [userMessage];
 
-      // Get AI response
-      const response = await sendMessage(allMessages);
+      const assistantMessageId = generateId();
+      let streamedContent = '';
 
-      if (response.error) {
-        throw new Error(response.error);
-      }
-
-      const assistantMessage: Message = {
-        id: generateId(),
-        role: 'assistant',
-        content: response.content,
-        timestamp: new Date(),
-      };
-
-      // Add assistant message to conversation
+      // Add empty assistant message for streaming
       setState(prev => ({
         ...prev,
-        isLoading: false,
         conversations: prev.conversations.map(conv => {
           if (conv.id === conversationId) {
             return {
               ...conv,
-              messages: [...conv.messages, assistantMessage],
+              messages: [...conv.messages, {
+                id: assistantMessageId,
+                role: 'assistant' as const,
+                content: '',
+                timestamp: new Date(),
+              }],
               updatedAt: new Date(),
             };
           }
           return conv;
         }),
+      }));
+
+      // Get AI response with streaming
+      const response = await sendMessage(allMessages, (delta) => {
+        streamedContent += delta;
+        setState(prev => ({
+          ...prev,
+          conversations: prev.conversations.map(conv => {
+            if (conv.id === conversationId) {
+              return {
+                ...conv,
+                messages: conv.messages.map(msg => 
+                  msg.id === assistantMessageId 
+                    ? { ...msg, content: streamedContent }
+                    : msg
+                ),
+              };
+            }
+            return conv;
+          }),
+        }));
+      });
+
+      if (response.error) {
+        throw new Error(response.error);
+      }
+
+      setState(prev => ({
+        ...prev,
+        isLoading: false,
       }));
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Failed to get response';
