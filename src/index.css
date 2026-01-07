@@ -61,59 +61,6 @@
     --gradient-end: 190 95% 50%;
   }
 
-  .dark {
-    --background: 240 20% 4%;
-    --foreground: 240 10% 96%;
-
-    --card: 240 20% 7%;
-    --card-foreground: 240 10% 96%;
-
-    --popover: 240 20% 7%;
-    --popover-foreground: 240 10% 96%;
-
-    --primary: 262 83% 65%;
-    --primary-foreground: 240 20% 4%;
-
-    --secondary: 240 15% 12%;
-    --secondary-foreground: 240 10% 90%;
-
-    --muted: 240 15% 12%;
-    --muted-foreground: 240 5% 55%;
-
-    --accent: 190 95% 50%;
-    --accent-foreground: 240 20% 4%;
-
-    --destructive: 0 62% 50%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 240 15% 15%;
-    --input: 240 15% 15%;
-    --ring: 262 83% 65%;
-
-    --sidebar-background: 240 20% 5%;
-    --sidebar-foreground: 240 10% 70%;
-    --sidebar-primary: 262 83% 65%;
-    --sidebar-primary-foreground: 240 20% 4%;
-    --sidebar-accent: 240 15% 10%;
-    --sidebar-accent-foreground: 262 83% 75%;
-    --sidebar-border: 240 15% 12%;
-    --sidebar-ring: 262 83% 65%;
-
-    /* Custom design tokens */
-    --chat-user-bg: 262 83% 60%;
-    --chat-user-fg: 0 0% 100%;
-    --chat-ai-bg: 240 15% 10%;
-    --chat-ai-fg: 240 10% 92%;
-    --code-bg: 240 25% 5%;
-    --code-fg: 190 95% 65%;
-    --glow-primary: 262 83% 65%;
-    --glow-accent: 190 95% 50%;
-    
-    /* Gradient colors */
-    --gradient-start: 262 83% 65%;
-    --gradient-mid: 280 75% 60%;
-    --gradient-end: 190 95% 55%;
-  }
 }
 
 @layer base {

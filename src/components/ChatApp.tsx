@@ -4,11 +4,9 @@ import { ChatHeader } from './chat/ChatHeader';
 import { ChatMessages } from './chat/ChatMessages';
 import { ChatInput } from './chat/ChatInput';
 import { useChat } from '@/hooks/useChat';
-import { useTheme } from '@/hooks/useTheme';
 
 export const ChatApp: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const { resolvedTheme, toggleTheme } = useTheme();
   
   const {
     conversations,
@@ -40,8 +38,6 @@ export const ChatApp: React.FC = () => {
         onNewConversation={createConversation}
         onDeleteConversation={deleteConversation}
         onClearAll={clearAllChats}
-        theme={resolvedTheme}
-        onToggleTheme={toggleTheme}
         isOpen={sidebarOpen}
         onClose={() => setSidebarOpen(false)}
       />
