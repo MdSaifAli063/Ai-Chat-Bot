@@ -57,14 +57,14 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
       <aside
         className={cn(
           "fixed md:relative inset-y-0 left-0 z-50",
-          "w-72 flex flex-col bg-sidebar border-r border-sidebar-border",
+          "w-72 flex flex-col bg-white/80 backdrop-blur-xl border-r border-sky-200/50 shadow-xl shadow-sky-100/50",
           "transition-transform duration-300 ease-in-out",
           isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
         )}
         aria-label="Chat history"
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-sidebar-border">
+        <div className="flex items-center justify-between p-4 border-b border-sky-200/50">
           <Logo size="sm" />
           
           <Button
@@ -129,7 +129,7 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
         </div>
 
         {/* Footer actions */}
-        <div className="p-4 border-t border-sidebar-border space-y-3 bg-sidebar/50 backdrop-blur-sm">
+        <div className="p-4 border-t border-sky-200/50 space-y-3 bg-white/50 backdrop-blur-sm">
           {/* User info */}
           {user && (
             <div className="px-3 py-2 rounded-lg bg-sidebar-accent/50">
