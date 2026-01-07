@@ -1,5 +1,5 @@
 import React from 'react';
-import { Plus, Trash2, Moon, Sun, X, LogOut, Sparkles } from 'lucide-react';
+import { Plus, Trash2, X, LogOut, Sparkles } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Conversation } from '@/types/chat';
 import { ConversationItem } from './ConversationItem';
@@ -16,8 +16,6 @@ interface ChatSidebarProps {
   onNewConversation: () => void;
   onDeleteConversation: (id: string) => void;
   onClearAll: () => void;
-  theme: 'light' | 'dark';
-  onToggleTheme: () => void;
   isOpen: boolean;
   onClose: () => void;
 }
@@ -29,8 +27,6 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
   onNewConversation,
   onDeleteConversation,
   onClearAll,
-  theme,
-  onToggleTheme,
   isOpen,
   onClose,
 }) => {
@@ -142,38 +138,17 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
             </div>
           )}
 
-          <div className="grid grid-cols-2 gap-2">
+          {conversations.length > 0 && (
             <Button
               variant="ghost"
               size="sm"
-              onClick={onToggleTheme}
-              className="justify-start gap-2 text-muted-foreground hover:text-foreground hover:bg-sidebar-accent rounded-lg"
+              onClick={onClearAll}
+              className="w-full justify-start gap-2 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-lg"
             >
-              {theme === 'dark' ? (
-                <>
-                  <Sun className="w-4 h-4" />
-                  <span className="text-xs">Light</span>
-                </>
-              ) : (
-                <>
-                  <Moon className="w-4 h-4" />
-                  <span className="text-xs">Dark</span>
-                </>
-              )}
+              <Trash2 className="w-4 h-4" />
+              <span className="text-xs">Clear All Chats</span>
             </Button>
-
-            {conversations.length > 0 && (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={onClearAll}
-                className="justify-start gap-2 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-lg"
-              >
-                <Trash2 className="w-4 h-4" />
-                <span className="text-xs">Clear</span>
-              </Button>
-            )}
-          </div>
+          )}
 
           <Separator className="bg-sidebar-border" />
 
