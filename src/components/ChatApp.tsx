@@ -20,6 +20,8 @@ export const ChatApp: React.FC = () => {
     clearAllChats,
   } = useChat();
 
+  const toggleSidebar = () => setSidebarOpen(prev => !prev);
+
   return (
     <div className="flex h-screen w-full overflow-hidden relative">
       {/* Sky blue gradient background */}
@@ -39,14 +41,15 @@ export const ChatApp: React.FC = () => {
         onDeleteConversation={deleteConversation}
         onClearAll={clearAllChats}
         isOpen={sidebarOpen}
-        onClose={() => setSidebarOpen(false)}
+        onToggle={toggleSidebar}
       />
 
       {/* Main chat area */}
       <main className="flex-1 flex flex-col min-w-0 bg-white/60 backdrop-blur-sm">
         <ChatHeader 
           conversation={activeConversation}
-          onOpenSidebar={() => setSidebarOpen(true)}
+          onOpenSidebar={toggleSidebar}
+          sidebarOpen={sidebarOpen}
         />
 
         <ChatMessages 
