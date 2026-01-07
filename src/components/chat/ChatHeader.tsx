@@ -1,31 +1,33 @@
 import React from 'react';
-import { Menu, MessageSquare } from 'lucide-react';
+import { Menu, MessageSquare, PanelLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Conversation } from '@/types/chat';
 
 interface ChatHeaderProps {
   conversation: Conversation | undefined;
   onOpenSidebar: () => void;
+  sidebarOpen?: boolean;
 }
 
 export const ChatHeader: React.FC<ChatHeaderProps> = ({ 
   conversation, 
-  onOpenSidebar 
+  onOpenSidebar,
+  sidebarOpen = true
 }) => {
   return (
-    <header className="flex items-center gap-4 px-4 py-3 border-b border-border bg-background/95 backdrop-blur-md sticky top-0 z-10">
+    <header className="flex items-center gap-4 px-4 py-3 border-b border-sky-200/50 bg-white/80 backdrop-blur-md sticky top-0 z-10">
       <Button
         variant="ghost"
         size="sm"
         onClick={onOpenSidebar}
-        className="md:hidden h-9 w-9 p-0 rounded-lg hover:bg-accent"
-        aria-label="Open menu"
+        className="h-9 w-9 p-0 rounded-lg hover:bg-sky-100"
+        aria-label={sidebarOpen ? "Close sidebar" : "Open sidebar"}
       >
-        <Menu className="w-5 h-5" />
+        {sidebarOpen ? <Menu className="w-5 h-5" /> : <PanelLeft className="w-5 h-5" />}
       </Button>
 
       <div className="flex-1 flex items-center gap-3 min-w-0">
-        <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary/20 to-accent flex items-center justify-center shrink-0">
+        <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary/20 to-sky-200 flex items-center justify-center shrink-0">
           <MessageSquare className="w-4 h-4 text-primary" />
         </div>
         

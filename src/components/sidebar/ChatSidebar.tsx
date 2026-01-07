@@ -1,5 +1,5 @@
 import React from 'react';
-import { Plus, Trash2, X, LogOut, Sparkles } from 'lucide-react';
+import { Plus, Trash2, X, LogOut, Sparkles, PanelLeftClose, PanelLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Conversation } from '@/types/chat';
 import { ConversationItem } from './ConversationItem';
@@ -17,7 +17,7 @@ interface ChatSidebarProps {
   onDeleteConversation: (id: string) => void;
   onClearAll: () => void;
   isOpen: boolean;
-  onClose: () => void;
+  onToggle: () => void;
 }
 
 export const ChatSidebar: React.FC<ChatSidebarProps> = ({
@@ -28,7 +28,7 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
   onDeleteConversation,
   onClearAll,
   isOpen,
-  onClose,
+  onToggle,
 }) => {
   const navigate = useNavigate();
   const { signOut, user } = useAuth();
@@ -43,8 +43,8 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
       {/* Mobile overlay */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-background/80 backdrop-blur-sm z-40 md:hidden"
-          onClick={onClose}
+          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden"
+          onClick={onToggle}
           aria-hidden="true"
         />
       )}
@@ -53,82 +53,93 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
       <aside
         className={cn(
           "fixed md:relative inset-y-0 left-0 z-50",
-          "w-72 flex flex-col bg-white/80 backdrop-blur-xl border-r border-sky-200/50 shadow-xl shadow-sky-100/50",
-          "transition-transform duration-300 ease-in-out",
-          isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+          "flex flex-col bg-white/90 backdrop-blur-xl border-r border-sky-200/50 shadow-xl shadow-sky-100/50",
+          "transition-all duration-300 ease-in-out",
+          isOpen ? "w-72 translate-x-0" : "w-0 -translate-x-full md:w-16 md:translate-x-0"
         )}
         aria-label="Chat history"
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-sky-200/50">
-          <Logo size="sm" />
+        <div className={cn(
+          "flex items-center p-4 border-b border-sky-200/50",
+          isOpen ? "justify-between" : "justify-center"
+        )}>
+          {isOpen && <Logo size="sm" />}
           
           <Button
             variant="ghost"
             size="sm"
-            onClick={onClose}
-            className="md:hidden h-8 w-8 p-0 hover:bg-sidebar-accent"
-            aria-label="Close sidebar"
+            onClick={onToggle}
+            className="h-8 w-8 p-0 hover:bg-sky-100"
+            aria-label={isOpen ? "Close sidebar" : "Open sidebar"}
           >
-            <X className="w-4 h-4" />
+            {isOpen ? <PanelLeftClose className="w-4 h-4" /> : <PanelLeft className="w-4 h-4" />}
           </Button>
         </div>
 
         {/* New chat button */}
-        <div className="p-4">
+        <div className="p-3">
           <Button
             onClick={() => {
               onNewConversation();
-              onClose();
+              if (window.innerWidth < 768) onToggle();
             }}
-            className="w-full gap-2 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground shadow-md hover:shadow-lg transition-all duration-200"
+            className={cn(
+              "gap-2 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground shadow-md hover:shadow-lg transition-all duration-200",
+              isOpen ? "w-full" : "w-10 h-10 p-0"
+            )}
             variant="default"
           >
             <Plus className="w-4 h-4" />
-            New Chat
+            {isOpen && "New Chat"}
           </Button>
         </div>
 
-        {/* Conversation list */}
-        <div className="flex-1 overflow-y-auto scrollbar-thin px-3 pb-3 space-y-1">
-          {conversations.length === 0 ? (
-            <div className="text-center py-12 px-4">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-accent mx-auto flex items-center justify-center mb-4">
-                <Sparkles className="w-8 h-8 text-primary" />
+        {/* Conversation list - only show when open */}
+        {isOpen && (
+          <div className="flex-1 overflow-y-auto scrollbar-thin px-3 pb-3 space-y-1">
+            {conversations.length === 0 ? (
+              <div className="text-center py-12 px-4">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 mx-auto flex items-center justify-center mb-4">
+                  <Sparkles className="w-8 h-8 text-primary" />
+                </div>
+                <p className="text-sm font-medium text-foreground mb-1">
+                  No conversations yet
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  Start a new chat to begin exploring
+                </p>
               </div>
-              <p className="text-sm font-medium text-foreground mb-1">
-                No conversations yet
-              </p>
-              <p className="text-xs text-muted-foreground">
-                Start a new chat to begin exploring
-              </p>
-            </div>
-          ) : (
-            <>
-              <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider px-2 pt-2 pb-3">
-                Recent Chats
-              </p>
-              {conversations.map((conversation) => (
-                <ConversationItem
-                  key={conversation.id}
-                  conversation={conversation}
-                  isActive={conversation.id === activeConversationId}
-                  onClick={() => {
-                    onSelectConversation(conversation.id);
-                    onClose();
-                  }}
-                  onDelete={() => onDeleteConversation(conversation.id)}
-                />
-              ))}
-            </>
-          )}
-        </div>
+            ) : (
+              <>
+                <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider px-2 pt-2 pb-3">
+                  Recent Chats
+                </p>
+                {conversations.map((conversation) => (
+                  <ConversationItem
+                    key={conversation.id}
+                    conversation={conversation}
+                    isActive={conversation.id === activeConversationId}
+                    onClick={() => {
+                      onSelectConversation(conversation.id);
+                      if (window.innerWidth < 768) onToggle();
+                    }}
+                    onDelete={() => onDeleteConversation(conversation.id)}
+                  />
+                ))}
+              </>
+            )}
+          </div>
+        )}
 
         {/* Footer actions */}
-        <div className="p-4 border-t border-sky-200/50 space-y-3 bg-white/50 backdrop-blur-sm">
+        <div className={cn(
+          "p-3 border-t border-sky-200/50 space-y-2 bg-white/50 backdrop-blur-sm",
+          !isOpen && "hidden md:block"
+        )}>
           {/* User info */}
-          {user && (
-            <div className="px-3 py-2 rounded-lg bg-sidebar-accent/50">
+          {user && isOpen && (
+            <div className="px-3 py-2 rounded-lg bg-sky-50">
               <p className="text-xs font-medium text-foreground truncate">
                 {user.email?.split('@')[0]}
               </p>
@@ -138,7 +149,7 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
             </div>
           )}
 
-          {conversations.length > 0 && (
+          {isOpen && conversations.length > 0 && (
             <Button
               variant="ghost"
               size="sm"
@@ -150,16 +161,19 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
             </Button>
           )}
 
-          <Separator className="bg-sidebar-border" />
+          {isOpen && <Separator className="bg-sky-200/50" />}
 
           <Button
             variant="ghost"
             size="sm"
             onClick={handleSignOut}
-            className="w-full justify-start gap-2 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-lg"
+            className={cn(
+              "gap-2 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-lg",
+              isOpen ? "w-full justify-start" : "w-10 h-10 p-0 justify-center"
+            )}
           >
             <LogOut className="w-4 h-4" />
-            Sign Out
+            {isOpen && "Sign Out"}
           </Button>
         </div>
       </aside>
