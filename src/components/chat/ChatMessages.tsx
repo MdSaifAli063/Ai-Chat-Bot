@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { Message } from '@/types/chat';
 import { MessageBubble } from './MessageBubble';
 import { TypingIndicator } from './TypingIndicator';
-import { Sparkles, Code, Lightbulb, Zap } from 'lucide-react';
+import { Code, Lightbulb, Zap } from 'lucide-react';
 import { Logo } from '@/components/Logo';
 
 interface ChatMessagesProps {
@@ -22,9 +22,7 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({ messages, isLoading 
   if (messages.length === 0 && !isLoading) {
     return (
       <div className="flex-1 flex flex-col items-center justify-center p-8 overflow-y-auto">
-        <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-primary/20 to-accent flex items-center justify-center mb-6 shadow-lg shadow-primary/10">
-          <Sparkles className="w-10 h-10 text-primary" />
-        </div>
+        <Logo size="xl" iconOnly className="mb-6" />
         
         <h2 className="text-3xl font-display font-bold text-foreground mb-3">
           Hi, I'm <span className="text-gradient">Synapse</span>

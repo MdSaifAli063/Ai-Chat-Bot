@@ -1,5 +1,5 @@
 import React from 'react';
-import { Plus, Trash2, X, LogOut, Sparkles, PanelLeftClose, PanelLeft } from 'lucide-react';
+import { Plus, Trash2, X, LogOut, PanelLeftClose, PanelLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Conversation } from '@/types/chat';
 import { ConversationItem } from './ConversationItem';
@@ -100,9 +100,7 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
           <div className="flex-1 overflow-y-auto scrollbar-thin px-3 pb-3 space-y-1">
             {conversations.length === 0 ? (
               <div className="text-center py-12 px-4">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 mx-auto flex items-center justify-center mb-4">
-                  <Sparkles className="w-8 h-8 text-primary" />
-                </div>
+                <Logo size="lg" iconOnly className="mx-auto mb-4" />
                 <p className="text-sm font-medium text-foreground mb-1">
                   No conversations yet
                 </p>

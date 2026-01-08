@@ -6,7 +6,6 @@ import {
   MessageSquare, 
   Zap, 
   Shield, 
-  Sparkles, 
   Brain, 
   Code2, 
   Lightbulb,
@@ -173,7 +172,6 @@ const Landing: React.FC = () => {
             >
               <div className="w-2 h-2 rounded-full bg-gradient-to-r from-primary to-accent animate-pulse" />
               <span className="text-gradient-primary font-semibold">Next-Gen AI Technology</span>
-              <Sparkles className="w-4 h-4 text-accent animate-bounce-gentle" />
             </div>
             
             {/* Main heading */}
@@ -279,9 +277,7 @@ const Landing: React.FC = () => {
                     
                     {/* AI message */}
                     <div className="flex gap-3 animate-fade-right" style={{ animationDelay: '1.4s' }}>
-                      <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-gradient-mid flex items-center justify-center shrink-0 ring-2 ring-background shadow-lg glow-primary">
-                        <Sparkles className="w-4 h-4 text-primary-foreground" />
-                      </div>
+                      <Logo size="sm" iconOnly className="shrink-0 ring-2 ring-background shadow-lg glow-primary" />
                       <div className="bg-secondary/70 rounded-2xl rounded-tl-md px-4 py-3 max-w-[75%] border border-border/50">
                         <p className="text-sm text-foreground">
                           Absolutely! I'll analyze your component and suggest optimizations using React.memo, useMemo, and useCallback where appropriate. Let me show you the improvements...
@@ -291,9 +287,7 @@ const Landing: React.FC = () => {
 
                     {/* Typing indicator */}
                     <div className="flex gap-3 animate-fade-right" style={{ animationDelay: '1.6s' }}>
-                      <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-gradient-mid flex items-center justify-center shrink-0 ring-2 ring-background shadow-lg">
-                        <Sparkles className="w-4 h-4 text-primary-foreground" />
-                      </div>
+                      <Logo size="sm" iconOnly className="shrink-0 ring-2 ring-background shadow-lg" />
                       <div className="bg-secondary/70 rounded-2xl rounded-tl-md px-4 py-3 border border-border/50">
                         <div className="flex gap-1.5">
                           <div className="w-2 h-2 rounded-full bg-primary animate-typing" />
@@ -391,9 +385,7 @@ const Landing: React.FC = () => {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-primary/20 to-accent/20 rounded-full blur-3xl animate-pulse-glow" />
           
           <div className="container mx-auto max-w-3xl text-center relative z-10">
-            <div className="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-gradient-to-br from-primary via-gradient-mid to-accent mb-8 shadow-2xl shadow-primary/40 animate-float glow-primary">
-              <Sparkles className="w-10 h-10 text-white" />
-            </div>
+            <Logo size="xl" iconOnly className="mx-auto mb-8 animate-float" />
             
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-6">
               Ready to Unlock Your Potential?
