@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { z } from 'zod';
-import { Eye, EyeOff, Loader2, Sparkles, ArrowLeft, Mail, Lock, Zap, Brain, Shield } from 'lucide-react';
+import { Eye, EyeOff, Loader2, ArrowLeft, Mail, Lock, Zap, Brain, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -82,9 +82,7 @@ const Auth: React.FC = () => {
       <div className="min-h-screen flex items-center justify-center bg-background relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-mesh opacity-60" />
         <div className="flex flex-col items-center gap-4 relative z-10">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary via-gradient-mid to-accent flex items-center justify-center animate-pulse shadow-xl glow-primary">
-            <Sparkles className="w-8 h-8 text-white" />
-          </div>
+          <Logo size="lg" iconOnly className="animate-pulse" />
           <Loader2 className="w-6 h-6 animate-spin text-primary" />
         </div>
       </div>
@@ -171,9 +169,7 @@ const Auth: React.FC = () => {
             <div className="gradient-border rounded-2xl overflow-hidden shadow-2xl shadow-primary/10">
               <div className="bg-card/95 backdrop-blur-xl p-8">
                 <div className="text-center mb-8">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary via-gradient-mid to-accent mx-auto flex items-center justify-center mb-4 shadow-lg glow-primary">
-                    <Sparkles className="w-8 h-8 text-white" />
-                  </div>
+                  <Logo size="lg" iconOnly className="mx-auto mb-4" />
                   <h2 className="text-2xl font-bold mb-2">
                     {isSignUp ? 'Create your account' : 'Welcome back'}
                   </h2>
