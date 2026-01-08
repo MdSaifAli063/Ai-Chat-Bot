@@ -169,7 +169,9 @@ const Auth: React.FC = () => {
             <div className="gradient-border rounded-2xl overflow-hidden shadow-2xl shadow-primary/10">
               <div className="bg-card/95 backdrop-blur-xl p-8">
                 <div className="text-center mb-8">
-                  <Logo size="lg" iconOnly className="mx-auto mb-4" />
+                  <div className="flex justify-center mb-4">
+                    <Logo size="lg" iconOnly />
+                  </div>
                   <h2 className="text-2xl font-bold mb-2">
                     {isSignUp ? 'Create your account' : 'Welcome back'}
                   </h2>
