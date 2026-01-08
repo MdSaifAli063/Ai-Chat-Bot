@@ -55,7 +55,7 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
           "fixed md:relative inset-y-0 left-0 z-50",
           "flex flex-col bg-white/90 backdrop-blur-xl border-r border-sky-200/50 shadow-xl shadow-sky-100/50",
           "transition-all duration-300 ease-in-out",
-          isOpen ? "w-72 translate-x-0" : "w-0 -translate-x-full md:w-16 md:translate-x-0"
+          isOpen ? "w-72 translate-x-0" : "w-0 -translate-x-full"
         )}
         aria-label="Chat history"
       >

@@ -22,9 +22,11 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({ messages, isLoading 
   if (messages.length === 0 && !isLoading) {
     return (
       <div className="flex-1 flex flex-col items-center justify-center p-8 overflow-y-auto">
-        <Logo size="xl" iconOnly className="mb-6" />
+        <div className="flex justify-center">
+          <Logo size="xl" iconOnly />
+        </div>
         
-        <h2 className="text-3xl font-display font-bold text-foreground mb-3">
+        <h2 className="text-3xl font-display font-bold text-foreground mb-3 mt-6 text-center">
           Hi, I'm <span className="text-gradient">Synapse</span>
         </h2>
         
