@@ -385,7 +385,9 @@ const Landing: React.FC = () => {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-primary/20 to-accent/20 rounded-full blur-3xl animate-pulse-glow" />
           
           <div className="container mx-auto max-w-3xl text-center relative z-10">
-            <Logo size="xl" iconOnly className="mx-auto mb-8 animate-float" />
+            <div className="flex justify-center mb-8">
+              <Logo size="xl" iconOnly className="animate-float" />
+            </div>
             
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-6">
               Ready to Unlock Your Potential?

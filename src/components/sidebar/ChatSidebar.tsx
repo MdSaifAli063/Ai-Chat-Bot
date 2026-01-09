@@ -54,27 +54,24 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
         className={cn(
           "fixed md:relative inset-y-0 left-0 z-50",
           "flex flex-col bg-white/90 backdrop-blur-xl",
+          "border-r border-sky-200/50 shadow-xl shadow-sky-100/50",
           "transition-all duration-300 ease-in-out",
-          isOpen && "border-r border-sky-200/50 shadow-xl shadow-sky-100/50",
-          isOpen ? "w-72 translate-x-0" : "w-0 -translate-x-full pointer-events-none"
+          isOpen ? "w-72 opacity-100" : "w-0 opacity-0 pointer-events-none overflow-hidden"
         )}
         aria-label="Chat history"
       >
         {/* Header */}
-        <div className={cn(
-          "flex items-center p-4 border-b border-sky-200/50",
-          isOpen ? "justify-between" : "justify-center"
-        )}>
-          {isOpen && <Logo size="sm" />}
+        <div className="flex items-center justify-between p-4 border-b border-sky-200/50 min-w-[288px]">
+          <Logo size="sm" />
           
           <Button
             variant="ghost"
             size="sm"
             onClick={onToggle}
             className="h-8 w-8 p-0 hover:bg-sky-100"
-            aria-label={isOpen ? "Close sidebar" : "Open sidebar"}
+            aria-label="Close sidebar"
           >
-            {isOpen ? <PanelLeftClose className="w-4 h-4" /> : <PanelLeft className="w-4 h-4" />}
+            <PanelLeftClose className="w-4 h-4" />
           </Button>
         </div>
 
