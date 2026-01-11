@@ -1,8 +1,21 @@
-# AI Chat Bot (Vite + React + TypeScript + Tailwind)
+<p align="center">
+  <img src="https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white" alt="React 18" />
+  <img src="https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Vite-7-646CFF?logo=vite&logoColor=white" alt="Vite" />
+  <img src="https://img.shields.io/badge/TailwindCSS-3-06B6D4?logo=tailwindcss&logoColor=white" alt="TailwindCSS" />
+  <img src="https://img.shields.io/badge/shadcn%2Fui-Components-000000" alt="shadcn/ui" />
+  <img src="https://img.shields.io/badge/Supabase-Edge%20Functions-3FCF8E?logo=supabase&logoColor=white" alt="Supabase Edge Functions" />
+  <img src="https://img.shields.io/badge/License-Custom-informational" alt="License" />
+</p>
+
+<h1 align="center">AI Chat Bot</h1>
+<p align="center"><i>Vite + React + TypeScript + Tailwind + shadcn/ui + Supabase</i></p>
 
 A responsive AI chat application built with Vite, React, TypeScript, Tailwind CSS, shadcn/ui, and Supabase Edge Functions for serverless AI chat completion streaming. The project has been scrubbed of vendor-specific tooling and uses neutral environment variables and an OpenAI-compatible API by default.
 
-## Features
+---
+
+## ✨ Features
 
 - React 18 + TypeScript + Vite for fast DX
 - Tailwind CSS + shadcn/ui components
@@ -10,7 +23,7 @@ A responsive AI chat application built with Vite, React, TypeScript, Tailwind CS
 - Supabase Edge Function proxy for server-side API calls and CORS handling
 - Simple theming, toast notifications, and responsive layout
 
-## Project Structure
+## 🧱 Project Structure
 
 - Ai Chat-Bot/
   - src/
@@ -24,14 +37,14 @@ A responsive AI chat application built with Vite, React, TypeScript, Tailwind CS
   - tailwind.config.ts
   - package.json
 
-## Prerequisites
+## ✅ Prerequisites
 
 - Node.js 18+
 - pnpm, npm, or yarn
 - A Supabase project (for deploying the Edge Function)
 - An AI provider key (OpenAI-compatible). Defaults to OpenAI endpoints but can be configured for any compatible provider.
 
-## Installation
+## 📦 Installation
 
 1. Install dependencies
    - pnpm install
@@ -50,18 +63,18 @@ A responsive AI chat application built with Vite, React, TypeScript, Tailwind CS
 
    Adjust AI_API_URL/AI_MODEL if you use another provider that supports the OpenAI-compatible chat API.
 
-## Development
+## 🛠️ Development
 
 - cd "Ai Chat-Bot"
 - pnpm dev (or npm run dev / yarn dev)
 - App runs on http://localhost:8080 by default (see vite.config.ts)
 
-## Build
+## 🏗️ Build
 
 - pnpm build (or npm run build / yarn build)
 - Preview: pnpm preview
 
-## Supabase Edge Function
+## ☁️ Supabase Edge Function
 
 The chat function proxies client requests to your AI provider, adds a system prompt, streams responses, and handles CORS.
 
@@ -77,7 +90,7 @@ To deploy:
 - Set environment variables in Supabase for the function:
   - supabase secrets set AI_API_KEY=... AI_API_URL=... AI_MODEL=...
 
-## Changing AI Provider
+## 🔁 Changing AI Provider
 
 Use any OpenAI-compatible endpoint:
 
@@ -90,13 +103,13 @@ Examples:
 - OpenAI: AI_API_URL=https://api.openai.com/v1/chat/completions
 - Together AI, Fireworks, Groq (with compatibility shim): use their compatible URL and model name
 
-## Removing Vendor-Specific Tooling
+## 🧹 Removing Vendor-Specific Tooling
 
 - Vite config no longer includes third-party tagging plugins
 - package.json devDependencies updated accordingly
 - Supabase function environment variables renamed to neutral AI_API_* names
 
-## Scripts
+## ���� Scripts
 
 - dev: Start development server
 - build: Production build
@@ -104,12 +117,12 @@ Examples:
 - preview: Preview the production build
 - lint: ESLint across the repo
 
-## Notes
+## 📝 Notes
 
 - components, hooks, and pages follow a modular structure using path aliases ("@" -> src)
 - services/api.ts handles streaming parsing and error handling
 - Tailwind and shadcn/ui are configured via tailwind.config.ts and src/components/ui/
 
-## License
+## 📄 License
 
 This repository contains application code intended for demonstration or internal use. Add your license of choice here.
