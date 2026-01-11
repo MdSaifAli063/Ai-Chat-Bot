@@ -12,24 +12,25 @@ serve(async (req) => {
 
   try {
     const { messages } = await req.json();
-    const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-    
-    if (!LOVABLE_API_KEY) {
-      throw new Error("LOVABLE_API_KEY is not configured");
+    const API_URL = Deno.env.get("AI_API_URL") ?? "https://api.openai.com/v1/chat/completions";
+    const API_KEY = Deno.env.get("AI_API_KEY");
+
+    if (!API_KEY) {
+      throw new Error("AI_API_KEY is not configured");
     }
 
-    const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+    const response = await fetch(API_URL, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${LOVABLE_API_KEY}`,
+        Authorization: `Bearer ${API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "google/gemini-2.5-flash",
+        model: Deno.env.get("AI_MODEL") ?? "gpt-4o-mini",
         messages: [
           { 
             role: "system", 
-            content: "You are Synapse AI, a helpful, friendly, and intelligent AI assistant. You provide clear, accurate, and thoughtful responses. You can help with coding, writing, analysis, creative tasks, and general questions. Be conversational and engaging while remaining informative." 
+            content: "You are a helpful, friendly, and intelligent AI assistant. Provide clear, accurate, and thoughtful responses."
           },
           ...messages,
         ],
