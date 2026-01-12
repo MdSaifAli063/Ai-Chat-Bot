@@ -1,6 +1,6 @@
 
 <h1 align="center">AI Chat Bot</h1>
-<p align="center"><i>Vite + React + TypeScript + Tailwind + shadcn/ui + Supabase</i></p>
+
 <p align="center">
   <img src="https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white" alt="React 18" />
   <img src="https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white" alt="TypeScript" />
