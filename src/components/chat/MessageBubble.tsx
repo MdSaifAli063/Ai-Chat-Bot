@@ -15,7 +15,7 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
   return (
     <div 
       className={cn(
-        "flex gap-4 animate-message-in",
+        "flex gap-2 sm:gap-3 md:gap-4 animate-message-in",
         isUser && "flex-row-reverse"
       )}
       role="article"
@@ -24,7 +24,7 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
       {/* Avatar */}
       <div 
         className={cn(
-          "flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center",
+          "flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center",
           isUser 
             ? "bg-primary" 
             : "bg-primary/10"
@@ -32,22 +32,22 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
         aria-hidden="true"
       >
         {isUser ? (
-          <User className="w-5 h-5 text-primary-foreground" />
+          <User className="w-4 h-4 sm:w-5 sm:h-5 text-primary-foreground" />
         ) : (
-          <Bot className="w-5 h-5 text-primary" />
+          <Bot className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
         )}
       </div>
 
       {/* Message content */}
       <div 
         className={cn(
-          "flex flex-col gap-1 max-w-[80%]",
+          "flex flex-col gap-1 max-w-[85%] sm:max-w-[80%]",
           isUser && "items-end"
         )}
       >
         <div 
           className={cn(
-            "px-4 py-3 rounded-2xl",
+            "px-3 py-2 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl text-sm sm:text-base",
             isUser 
               ? "bg-chat-user text-chat-user-foreground rounded-tr-md" 
               : "bg-chat-ai text-chat-ai-foreground rounded-tl-md"
@@ -62,7 +62,7 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
 
         {/* Timestamp */}
         <span 
-          className="text-xs text-muted-foreground px-1"
+          className="text-[10px] sm:text-xs text-muted-foreground px-1"
           aria-label={`Sent ${formatTimestamp(message.timestamp)}`}
         >
           {formatTimestamp(message.timestamp)}
