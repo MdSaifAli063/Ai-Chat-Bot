@@ -95,7 +95,7 @@ const Landing: React.FC = () => {
         />
       </Helmet>
 
-      <div className="min-h-screen bg-background overflow-hidden relative">
+      <div className="min-h-[100dvh] bg-background overflow-hidden relative">
         {/* Animated background */}
         <div className="fixed inset-0 -z-10">
           {/* Main gradient mesh */}
@@ -104,9 +104,9 @@ const Landing: React.FC = () => {
           {/* Aurora effect */}
           <div className="absolute inset-0 bg-aurora opacity-60" />
           
-          {/* Floating orbs */}
+          {/* Floating orbs - responsive sizes */}
           <div 
-            className="absolute w-[600px] h-[600px] rounded-full bg-gradient-to-br from-primary/20 via-primary/10 to-transparent blur-3xl animate-float-slow"
+            className="absolute w-[300px] sm:w-[400px] md:w-[600px] h-[300px] sm:h-[400px] md:h-[600px] rounded-full bg-gradient-to-br from-primary/20 via-primary/10 to-transparent blur-3xl animate-float-slow"
             style={{ 
               top: '10%', 
               left: '20%',
@@ -114,7 +114,7 @@ const Landing: React.FC = () => {
             }}
           />
           <div 
-            className="absolute w-[500px] h-[500px] rounded-full bg-gradient-to-br from-accent/20 via-accent/10 to-transparent blur-3xl animate-float-slow"
+            className="absolute w-[250px] sm:w-[350px] md:w-[500px] h-[250px] sm:h-[350px] md:h-[500px] rounded-full bg-gradient-to-br from-accent/20 via-accent/10 to-transparent blur-3xl animate-float-slow"
             style={{ 
               bottom: '10%', 
               right: '10%',
@@ -123,7 +123,7 @@ const Landing: React.FC = () => {
             }}
           />
           <div 
-            className="absolute w-[400px] h-[400px] rounded-full bg-gradient-to-br from-gradient-mid/15 to-transparent blur-3xl animate-morph"
+            className="absolute w-[200px] sm:w-[300px] md:w-[400px] h-[200px] sm:h-[300px] md:h-[400px] rounded-full bg-gradient-to-br from-gradient-mid/15 to-transparent blur-3xl animate-morph"
             style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
           />
           
@@ -132,28 +132,28 @@ const Landing: React.FC = () => {
         </div>
 
         {/* Navigation */}
-        <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 safe-area-top ${
           scrollY > 50 
             ? 'bg-background/80 backdrop-blur-xl border-b border-border/50 shadow-lg shadow-primary/5' 
             : 'bg-transparent'
         }`}>
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between h-16">
+          <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+            <div className="flex items-center justify-between h-14 sm:h-16">
               <div className="opacity-0 animate-fade-right" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
                 <Logo size="sm" />
               </div>
               
-              <div className="flex items-center gap-3 opacity-0 animate-fade-left" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
+              <div className="flex items-center gap-2 sm:gap-3 opacity-0 animate-fade-left" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
                 <Button
                   variant="ghost"
                   onClick={() => navigate('/auth')}
-                  className="text-muted-foreground hover:text-foreground hover:bg-primary/10"
+                  className="text-muted-foreground hover:text-foreground hover:bg-primary/10 text-xs sm:text-sm px-2 sm:px-4"
                 >
                   Sign In
                 </Button>
                 <Button
                   onClick={() => navigate('/auth?mode=signup')}
-                  className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-primary-foreground shadow-lg shadow-primary/30 border-0"
+                  className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-primary-foreground shadow-lg shadow-primary/30 border-0 text-xs sm:text-sm px-3 sm:px-4"
                 >
                   Get Started
                 </Button>
@@ -163,29 +163,29 @@ const Landing: React.FC = () => {
         </nav>
 
         {/* Hero Section */}
-        <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative">
+        <section className="pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 px-3 sm:px-4 md:px-6 lg:px-8 relative">
           <div className="container mx-auto text-center max-w-5xl">
             {/* Badge */}
             <div 
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium mb-8 opacity-0 animate-fade-down group hover:border-primary/50 transition-colors cursor-default"
+              className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full glass text-xs sm:text-sm font-medium mb-6 sm:mb-8 opacity-0 animate-fade-down group hover:border-primary/50 transition-colors cursor-default"
               style={{ animationDelay: '0.3s', animationFillMode: 'forwards' }}
             >
-              <div className="w-2 h-2 rounded-full bg-gradient-to-r from-primary to-accent animate-pulse" />
+              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-gradient-to-r from-primary to-accent animate-pulse" />
               <span className="text-gradient-primary font-semibold">Next-Gen AI Technology</span>
             </div>
             
             {/* Main heading */}
             <h1 
-              className="text-5xl sm:text-6xl lg:text-7xl font-display font-bold tracking-tight mb-6 opacity-0 animate-fade-up"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-bold tracking-tight mb-4 sm:mb-6 opacity-0 animate-fade-up px-2"
               style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}
             >
               Think Faster with
-              <span className="block mt-2 text-gradient animate-gradient-shift bg-[length:200%_auto]">Synapse AI</span>
+              <span className="block mt-1 sm:mt-2 text-gradient animate-gradient-shift bg-[length:200%_auto]">Synapse AI</span>
             </h1>
             
             {/* Subtitle */}
             <p 
-              className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 opacity-0 animate-fade-up"
+              className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground max-w-xs sm:max-w-lg md:max-w-2xl mx-auto mb-8 sm:mb-10 opacity-0 animate-fade-up px-4"
               style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}
             >
               Your neural connection to intelligence. Code faster, create better, 
@@ -194,43 +194,43 @@ const Landing: React.FC = () => {
             
             {/* CTA Buttons */}
             <div 
-              className="flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0 animate-fade-up"
+              className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 opacity-0 animate-fade-up px-4"
               style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}
             >
               <Button
                 size="lg"
                 onClick={() => navigate('/auth?mode=signup')}
-                className="group w-full sm:w-auto bg-gradient-to-r from-primary via-gradient-mid to-accent hover:opacity-90 text-primary-foreground px-8 py-6 text-lg shadow-xl shadow-primary/30 hover:shadow-2xl hover:shadow-primary/40 transition-all duration-300 border-0 glow-primary"
+                className="group w-full sm:w-auto bg-gradient-to-r from-primary via-gradient-mid to-accent hover:opacity-90 text-primary-foreground px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg shadow-xl shadow-primary/30 hover:shadow-2xl hover:shadow-primary/40 transition-all duration-300 border-0 glow-primary"
               >
-                <Wand2 className="mr-2 w-5 h-5" />
+                <Wand2 className="mr-2 w-4 h-4 sm:w-5 sm:h-5" />
                 Start Free Now
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button
                 size="lg"
                 variant="outline"
                 onClick={() => navigate('/auth')}
-                className="w-full sm:w-auto px-8 py-6 text-lg glass hover:bg-primary/10 hover:border-primary/50 transition-all duration-300"
+                className="w-full sm:w-auto px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg glass hover:bg-primary/10 hover:border-primary/50 transition-all duration-300"
               >
-                <Lock className="mr-2 w-4 h-4" />
+                <Lock className="mr-2 w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 Sign In
               </Button>
             </div>
 
             {/* Stats */}
             <div 
-              className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto opacity-0 animate-fade-up"
+              className="mt-10 sm:mt-12 md:mt-16 grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 md:gap-4 max-w-3xl mx-auto opacity-0 animate-fade-up px-2"
               style={{ animationDelay: '0.7s', animationFillMode: 'forwards' }}
             >
               {stats.map((stat, index) => (
                 <div 
                   key={stat.label} 
-                  className="group relative p-5 rounded-2xl glass hover:border-primary/50 transition-all duration-300 hover:-translate-y-1"
+                  className="group relative p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl glass hover:border-primary/50 transition-all duration-300 hover:-translate-y-1"
                 >
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <stat.icon className="w-5 h-5 text-accent mx-auto mb-2" />
-                  <p className="text-2xl sm:text-3xl font-display font-bold text-gradient">{stat.value}</p>
-                  <p className="text-sm text-muted-foreground mt-1">{stat.label}</p>
+                  <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <stat.icon className="w-4 h-4 sm:w-5 sm:h-5 text-accent mx-auto mb-1 sm:mb-2" />
+                  <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-display font-bold text-gradient">{stat.value}</p>
+                  <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground mt-0.5 sm:mt-1">{stat.label}</p>
                 </div>
               ))}
             </div>
@@ -379,40 +379,40 @@ const Landing: React.FC = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <section className="py-16 sm:py-20 md:py-24 px-3 sm:px-4 md:px-6 lg:px-8 relative overflow-hidden">
           {/* Background decoration */}
           <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-gradient-mid/10 to-accent/10" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-primary/20 to-accent/20 rounded-full blur-3xl animate-pulse-glow" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[400px] md:w-[600px] h-[300px] sm:h-[400px] md:h-[600px] bg-gradient-to-r from-primary/20 to-accent/20 rounded-full blur-3xl animate-pulse-glow" />
           
-          <div className="container mx-auto max-w-3xl text-center relative z-10">
-            <div className="flex justify-center mb-8">
-              <Logo size="xl" iconOnly className="animate-float" />
+          <div className="container mx-auto max-w-3xl text-center relative z-10 px-4">
+            <div className="flex justify-center mb-6 sm:mb-8">
+              <Logo size="lg" iconOnly className="animate-float sm:scale-110 md:scale-125" />
             </div>
             
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4 sm:mb-6">
               Ready to Unlock Your Potential?
             </h2>
-            <p className="text-muted-foreground mb-10 max-w-xl mx-auto text-lg">
+            <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-8 sm:mb-10 max-w-xs sm:max-w-lg md:max-w-xl mx-auto">
               Join thousands of creators, developers, and thinkers who are already 
               experiencing the future of AI conversations.
             </p>
             <Button
               size="lg"
               onClick={() => navigate('/auth?mode=signup')}
-              className="group bg-gradient-to-r from-primary via-gradient-mid to-accent hover:opacity-90 text-primary-foreground px-12 py-7 text-lg shadow-2xl shadow-primary/40 hover:shadow-primary/50 transition-all duration-300 border-0"
+              className="group bg-gradient-to-r from-primary via-gradient-mid to-accent hover:opacity-90 text-primary-foreground px-8 sm:px-10 md:px-12 py-5 sm:py-6 md:py-7 text-base sm:text-lg shadow-2xl shadow-primary/40 hover:shadow-primary/50 transition-all duration-300 border-0"
             >
               Get Started Free
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <p className="mt-4 text-sm text-muted-foreground">No credit card required</p>
+            <p className="mt-3 sm:mt-4 text-xs sm:text-sm text-muted-foreground">No credit card required</p>
           </div>
         </section>
 
         {/* Footer */}
-        <footer className="py-10 px-4 border-t border-border/50 bg-background/50 backdrop-blur-xl">
-          <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+        <footer className="py-6 sm:py-8 md:py-10 px-3 sm:px-4 border-t border-border/50 bg-background/50 backdrop-blur-xl safe-area-bottom">
+          <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
             <Logo size="sm" />
-            <p className="text-sm text-muted-foreground">
+            <p className="text-xs sm:text-sm text-muted-foreground text-center">
               © {new Date().getFullYear()} Synapse AI. Crafted with intelligence.
             </p>
           </div>
