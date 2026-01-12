@@ -5,9 +5,9 @@ import { Conversation } from '@/types/chat';
 import { ConversationItem } from './ConversationItem';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
+import { Logo } from '@/components/Logo';
 import { useAuth } from '@/hooks/useAuth';
 import { cn } from '@/lib/utils';
-import { Logo } from '@/components/Logo';
 
 interface ChatSidebarProps {
   conversations: Conversation[];
@@ -52,17 +52,20 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
       {/* Sidebar */}
       <aside
         className={cn(
-          "fixed md:relative inset-y-0 left-0 z-50",
+          "fixed inset-y-0 left-0 z-50",
           "flex flex-col bg-white/90 backdrop-blur-xl",
           "border-r border-sky-200/50 shadow-xl shadow-sky-100/50",
           "transition-all duration-300 ease-in-out",
-          isOpen ? "w-72 opacity-100" : "w-0 opacity-0 pointer-events-none overflow-hidden"
+          isOpen 
+            ? "w-[85vw] xs:w-72 sm:w-72 translate-x-0 opacity-100" 
+            : "w-0 -translate-x-full opacity-0 pointer-events-none overflow-hidden"
         )}
         aria-label="Chat history"
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-sky-200/50 min-w-[288px]">
+        <div className="flex items-center justify-between p-3 sm:p-4 border-b border-sky-200/50 min-w-[250px] xs:min-w-[288px]">
           <Logo size="sm" />
+          
           <Button
             variant="ghost"
             size="sm"
@@ -97,6 +100,7 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
           <div className="flex-1 overflow-y-auto scrollbar-thin px-3 pb-3 space-y-1">
             {conversations.length === 0 ? (
               <div className="text-center py-12 px-4">
+                <Logo size="lg" iconOnly className="mx-auto mb-4" />
                 <p className="text-sm font-medium text-foreground mb-1">
                   No conversations yet
                 </p>
