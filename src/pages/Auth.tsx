@@ -96,12 +96,12 @@ const Auth: React.FC = () => {
         <meta name="description" content="Sign in or create an account to start chatting with Synapse AI." />
       </Helmet>
 
-      <div className="min-h-screen flex bg-background relative overflow-hidden">
+      <div className="min-h-[100dvh] flex bg-background relative overflow-hidden">
         {/* Animated background */}
         <div className="absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-gradient-mesh opacity-50" />
-          <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-gradient-to-br from-primary/30 to-transparent rounded-full blur-3xl animate-float-slow" />
-          <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-accent/20 to-transparent rounded-full blur-3xl animate-float-slow" style={{ animationDelay: '3s' }} />
+          <div className="absolute top-0 left-0 w-[250px] sm:w-[350px] md:w-[500px] h-[250px] sm:h-[350px] md:h-[500px] bg-gradient-to-br from-primary/30 to-transparent rounded-full blur-3xl animate-float-slow" />
+          <div className="absolute bottom-0 right-0 w-[300px] sm:w-[400px] md:w-[600px] h-[300px] sm:h-[400px] md:h-[600px] bg-gradient-to-br from-accent/20 to-transparent rounded-full blur-3xl animate-float-slow" style={{ animationDelay: '3s' }} />
           <div className="absolute inset-0 bg-noise" />
         </div>
 
@@ -150,69 +150,69 @@ const Auth: React.FC = () => {
         </div>
 
         {/* Right side - Auth Form */}
-        <div className="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12">
+        <div className="w-full lg:w-1/2 flex items-center justify-center p-4 sm:p-6 md:p-8 lg:p-12 safe-area-top safe-area-bottom">
           <div className="w-full max-w-md">
             {/* Back button */}
             <button
               onClick={() => navigate('/')}
-              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8 group"
+              className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors mb-6 sm:mb-8 group"
             >
-              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+              <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:-translate-x-1 transition-transform" />
               Back to home
             </button>
 
             {/* Mobile logo */}
-            <div className="lg:hidden mb-8 text-center">
+            <div className="lg:hidden mb-6 sm:mb-8 text-center">
               <Logo size="lg" className="justify-center" />
             </div>
 
-            <div className="gradient-border rounded-2xl overflow-hidden shadow-2xl shadow-primary/10">
-              <div className="bg-card/95 backdrop-blur-xl p-8">
-                <div className="text-center mb-8">
-                  <div className="flex justify-center mb-4">
+            <div className="gradient-border rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl shadow-primary/10">
+              <div className="bg-card/95 backdrop-blur-xl p-5 sm:p-6 md:p-8">
+                <div className="text-center mb-6 sm:mb-8">
+                  <div className="flex justify-center mb-3 sm:mb-4">
                     <Logo size="lg" iconOnly />
                   </div>
-                  <h2 className="text-2xl font-bold mb-2">
+                  <h2 className="text-xl sm:text-2xl font-bold mb-1.5 sm:mb-2">
                     {isSignUp ? 'Create your account' : 'Welcome back'}
                   </h2>
-                  <p className="text-muted-foreground">
+                  <p className="text-sm sm:text-base text-muted-foreground">
                     {isSignUp
                       ? 'Start your AI journey today'
                       : 'Sign in to continue your conversations'}
                   </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="space-y-2">
-                    <Label htmlFor="email" className="text-sm font-medium">Email</Label>
+                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+                  <div className="space-y-1.5 sm:space-y-2">
+                    <Label htmlFor="email" className="text-xs sm:text-sm font-medium">Email</Label>
                     <div className="relative group">
-                      <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
+                      <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 sm:w-4 sm:h-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
                       <Input
                         id="email"
                         type="email"
                         placeholder="Enter your email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className={`pl-10 h-12 rounded-xl bg-background/50 border-input focus:border-primary focus:ring-primary/20 ${errors.email ? 'border-destructive focus:ring-destructive/20' : ''}`}
+                        className={`pl-9 sm:pl-10 h-10 sm:h-12 rounded-lg sm:rounded-xl bg-background/50 border-input focus:border-primary focus:ring-primary/20 text-sm sm:text-base ${errors.email ? 'border-destructive focus:ring-destructive/20' : ''}`}
                         disabled={isSubmitting}
                       />
                     </div>
                     {errors.email && (
-                      <p className="text-xs text-destructive mt-1">{errors.email}</p>
+                      <p className="text-[10px] sm:text-xs text-destructive mt-1">{errors.email}</p>
                     )}
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="password" className="text-sm font-medium">Password</Label>
+                  <div className="space-y-1.5 sm:space-y-2">
+                    <Label htmlFor="password" className="text-xs sm:text-sm font-medium">Password</Label>
                     <div className="relative group">
-                      <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
+                      <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 sm:w-4 sm:h-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
                       <Input
                         id="password"
                         type={showPassword ? 'text' : 'password'}
                         placeholder="Enter your password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className={`pl-10 pr-10 h-12 rounded-xl bg-background/50 border-input focus:border-primary focus:ring-primary/20 ${errors.password ? 'border-destructive focus:ring-destructive/20' : ''}`}
+                        className={`pl-9 sm:pl-10 pr-9 sm:pr-10 h-10 sm:h-12 rounded-lg sm:rounded-xl bg-background/50 border-input focus:border-primary focus:ring-primary/20 text-sm sm:text-base ${errors.password ? 'border-destructive focus:ring-destructive/20' : ''}`}
                         disabled={isSubmitting}
                       />
                       <button
@@ -221,25 +221,25 @@ const Auth: React.FC = () => {
                         className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
                       >
                         {showPassword ? (
-                          <EyeOff className="w-4 h-4" />
+                          <EyeOff className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                         ) : (
-                          <Eye className="w-4 h-4" />
+                          <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                         )}
                       </button>
                     </div>
                     {errors.password && (
-                      <p className="text-xs text-destructive mt-1">{errors.password}</p>
+                      <p className="text-[10px] sm:text-xs text-destructive mt-1">{errors.password}</p>
                     )}
                   </div>
 
                   <Button
                     type="submit"
-                    className="w-full h-12 rounded-xl bg-gradient-to-r from-primary via-gradient-mid to-accent hover:opacity-90 text-primary-foreground font-medium shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all duration-200 border-0"
+                    className="w-full h-10 sm:h-12 rounded-lg sm:rounded-xl bg-gradient-to-r from-primary via-gradient-mid to-accent hover:opacity-90 text-primary-foreground font-medium shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all duration-200 border-0 text-sm sm:text-base"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (
                       <>
-                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                        <Loader2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-2 animate-spin" />
                         {isSignUp ? 'Creating account...' : 'Signing in...'}
                       </>
                     ) : (
@@ -248,8 +248,8 @@ const Auth: React.FC = () => {
                   </Button>
                 </form>
 
-                <div className="mt-6 text-center">
-                  <p className="text-sm text-muted-foreground">
+                <div className="mt-5 sm:mt-6 text-center">
+                  <p className="text-xs sm:text-sm text-muted-foreground">
                     {isSignUp ? 'Already have an account?' : "Don't have an account?"}{' '}
                     <button
                       onClick={toggleMode}
