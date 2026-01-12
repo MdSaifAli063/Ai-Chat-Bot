@@ -21,21 +21,21 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({ messages, isLoading 
   // Empty state
   if (messages.length === 0 && !isLoading) {
     return (
-      <div className="flex-1 flex flex-col items-center justify-center p-8 overflow-y-auto">
+      <div className="flex-1 flex flex-col items-center justify-center p-4 sm:p-6 md:p-8 overflow-y-auto">
         <div className="flex justify-center">
-          <Logo size="xl" iconOnly />
+          <Logo size="lg" iconOnly className="sm:scale-110 md:scale-125" />
         </div>
         
-        <h2 className="text-3xl font-display font-bold text-foreground mb-3 mt-6 text-center">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-display font-bold text-foreground mb-2 sm:mb-3 mt-4 sm:mt-6 text-center">
           Hi, I'm <span className="text-gradient">Synapse</span>
         </h2>
         
-        <p className="text-muted-foreground text-center max-w-md mb-10">
+        <p className="text-sm sm:text-base text-muted-foreground text-center max-w-xs sm:max-w-md mb-6 sm:mb-8 md:mb-10 px-2">
           Your intelligent assistant for coding, creativity, and problem-solving. 
           How can I help you today?
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-2xl px-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 w-full max-w-xs sm:max-w-2xl px-2 sm:px-4">
           {[
             { 
               icon: Code, 
@@ -55,15 +55,15 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({ messages, isLoading 
           ].map((item, index) => (
             <button
               key={index}
-              className="p-5 rounded-2xl border border-border bg-card/50 text-left
+              className="p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl border border-border bg-card/50 text-left
                          hover:bg-card hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5
-                         transition-all duration-300 group"
+                         transition-all duration-300 group active:scale-[0.98]"
             >
-              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
-                <item.icon className="w-5 h-5 text-primary" />
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-primary/10 flex items-center justify-center mb-2 sm:mb-3 group-hover:bg-primary/20 transition-colors">
+                <item.icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
               </div>
-              <p className="font-semibold text-foreground mb-1">{item.title}</p>
-              <p className="text-xs text-muted-foreground">{item.desc}</p>
+              <p className="font-semibold text-sm sm:text-base text-foreground mb-0.5 sm:mb-1">{item.title}</p>
+              <p className="text-[10px] sm:text-xs text-muted-foreground">{item.desc}</p>
             </button>
           ))}
         </div>
@@ -73,12 +73,12 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({ messages, isLoading 
 
   return (
     <div 
-      className="flex-1 overflow-y-auto scrollbar-thin p-4 md:p-6 space-y-6"
+      className="flex-1 overflow-y-auto scrollbar-thin p-3 sm:p-4 md:p-6 space-y-4 sm:space-y-6"
       role="log"
       aria-label="Chat messages"
       aria-live="polite"
     >
-      <div className="max-w-3xl mx-auto space-y-6">
+      <div className="max-w-3xl mx-auto space-y-4 sm:space-y-6">
         {messages.map((message) => (
           <MessageBubble key={message.id} message={message} />
         ))}
