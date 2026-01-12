@@ -1,3 +1,6 @@
+
+<h1 align="center">AI Chat Bot</h1>
+<p align="center"><i>Vite + React + TypeScript + Tailwind + shadcn/ui + Supabase</i></p>
 <p align="center">
   <img src="https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white" alt="React 18" />
   <img src="https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white" alt="TypeScript" />
@@ -7,9 +10,6 @@
   <img src="https://img.shields.io/badge/Supabase-Edge%20Functions-3FCF8E?logo=supabase&logoColor=white" alt="Supabase Edge Functions" />
   <img src="https://img.shields.io/badge/License-Custom-informational" alt="License" />
 </p>
-
-<h1 align="center">AI Chat Bot</h1>
-<p align="center"><i>Vite + React + TypeScript + Tailwind + shadcn/ui + Supabase</i></p>
 
 A responsive AI chat application built with Vite, React, TypeScript, Tailwind CSS, shadcn/ui, and Supabase Edge Functions for serverless AI chat completion streaming. The project has been scrubbed of vendor-specific tooling and uses neutral environment variables and an OpenAI-compatible API by default.
 
